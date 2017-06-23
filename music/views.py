@@ -127,7 +127,7 @@ def index(request):
         return render(request, 'music/login.html')
     else:
         albums = Album.objects.filter(user=request.user)
-        song_results = Song.objects.all()
+        song_results = Song.objects.filter(album__user=request.user)
         query = request.GET.get("q")
         if query:
             albums = albums.filter(
